@@ -30,10 +30,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    self.applyBtn = [ApplyButton buttonWithType:UIButtonTypeCustom frame:CGRectMake(viewWidthFrame(SCREEN_WIDTH-220), viewHeightFrame(250), viewHeightFrame(190), viewHeightFrame(50)) titleColor:[UIColor whiteColor] titleFont:14 backgroundColor:[UIColor colorWithRed:0 green:168/255.0 blue:1 alpha:1]];
+    __weak ViewController *weakSelf = self;
+    
+    self.applyBtn = [ApplyButton
+                     
+                     buttonWithType:UIButtonTypeCustom
+                     
+                     frame:CGRectMake((SCREEN_WIDTH - viewHeightFrame(300)) / 2, viewHeightFrame(250), viewHeightFrame(300), viewHeightFrame(80))
+                     
+                     titleColor:[UIColor whiteColor]
+                     
+                     titleFont:14
+                     
+                     backgroundColor:[UIColor colorWithRed:0 green:168/255.0 blue:1 alpha:1]];
+    
     [self.view addSubview:self.applyBtn];
+    
+    [self.applyBtn requestApply:^{
+        
+        [weakSelf netWorkingRequest];
+        
+    }];
 }
 /**
  网络请求验证码
@@ -41,7 +61,9 @@
  */
 
 - (void) netWorkingRequest {
+    
     NSLog(@"请求验证码");
+    
     NSLog(@"Request validation code");
 }
 
