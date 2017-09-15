@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^TapHandler)();
-
 @interface ApplyButton : UIButton
 
-@property (nonatomic, copy) TapHandler returnApplyBlock;
+@property (nonatomic, copy) BOOL(^returnApplyBlock)();
 
 + (instancetype)buttonWithType:(UIButtonType)buttonType frame:(CGRect)frame titleColor:(UIColor *)titleColor titleFont:(CGFloat)font backgroundColor:(UIColor *)backgroundColor;
 
-- (void) requestApply:(TapHandler)requestApplyBlock;
+- (void)setReturnApplyBlock:(BOOL (^)())returnApplyBlock;
 
 @end

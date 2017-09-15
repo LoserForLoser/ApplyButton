@@ -38,19 +38,16 @@
     return applyBtn;
 }
 
-- (void)requestApply:(TapHandler)requestApplyBlock {
-    
-    self.returnApplyBlock = requestApplyBlock;
-}
-
 - (void) startTime:(UIButton *)sender {
     
-//    self.userInteractionEnabled = NO;
-//    [self startTimeO:sender];   //Timer实时性不如GCD且有BUG
+    if (self.returnApplyBlock()) {
+        
+//        self.userInteractionEnabled = NO;
+//        [self startTimeO:sender];   //NSTimer实时性不如GCD且有BUG
+        
+        [self startTimeT:sender]; // GCD
+    }
     
-    [self startTimeT:sender];
-    
-    self.returnApplyBlock();
 }
 
 

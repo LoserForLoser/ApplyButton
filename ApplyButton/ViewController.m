@@ -49,9 +49,23 @@
     
     [self.view addSubview:self.applyBtn];
     
-    [self.applyBtn requestApply:^{
+    [self.applyBtn setReturnApplyBlock:^BOOL{
         
-        [weakSelf netWorkingRequest];
+        if (/* DISABLES CODE */ (YES)) {
+            
+            [weakSelf netWorkingRequest];
+            
+            return YES;
+            
+        } else {
+            
+            NSLog(@"号码不正确！");
+            
+            NSLog(@"The number is incorrect!");
+            
+            return NO;
+            
+        }
         
     }];
 }
